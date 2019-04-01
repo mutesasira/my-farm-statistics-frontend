@@ -1,0 +1,12 @@
+<div class="mt-3 mb-3">
+      Names:
+      <ul>
+        <li v-for="n in names">{{ n }}</li>
+      </ul>
+    </div>
+    <div class="mt-6 mb-6">
+      Locations:
+      <ul>
+        <li v-for="l in locations">{{ l }}</li>
+      </ul>
+    </div>
