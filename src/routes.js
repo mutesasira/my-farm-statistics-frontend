@@ -7,7 +7,10 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/vue-material.min.css';
 import home from './layouts/home';
-import association from './components/association';
+import displayAssociation from './components/displayAssociation';
+import login from './components/login';
+import testTable from './components/testTable';
+
 
 
 export default[
@@ -19,14 +22,22 @@ export default[
       path: "",
       name: 'home',
       component: home,
-
+      
       children:[
-        {
-        path:"/association",
-        name:'association',
-        component: association
-        }
+        
       ]
+    },
+    {
+      path:"/testTable",
+      component: testTable
+    },
+    {
+      path:"/displayAssociation",
+      component: displayAssociation
+    },
+    {
+      path:"/login",
+      component:login
     }
     //put other routes here
   ]

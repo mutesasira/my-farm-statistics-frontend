@@ -1,15 +1,41 @@
 <script>
-    export default{
-        components:{
+  export default {
+    data :() => {
+      return {
+        name: '',
+        names: [],
+      }
+    },
 
+    methods: {
+      clearName() {
+        this.name = ''
+      },
+      handleOk(evt) {
+        // Prevent modal from closing
+        evt.preventDefault()
+        if (!this.name) {
+          alert('Please enter your name')
+        } else {
+          this.handleSubmit()
         }
-    }
+      },
+      handleSubmit() {
+        this.names.push(this.name)
+        this.clearName()
+        this.$nextTick(() => {
+          // Wrapped in $nextTick to ensure DOM is rendered before closing
+          this.$refs.modal.hide()
+        })
+      }
+    },
+  }
 </script>
 <template>
-    <div class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+    <div id = "app" class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top">
-            <div >
+            <div class = "headerbg" >
             <!-- BEGIN HEADER INNER -->
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
@@ -30,21 +56,21 @@
                 <div class="page-actions">
                     <div class="btn-group">
                         <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <span class="hidden-sm hidden-xs">Actions&nbsp;</span>
+                            <span class="hidden-sm hidden-xs">Dropdown&nbsp;</span>
                             <i class="fa fa-angle-down"></i>
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li>
                                 <a href="javascript:;">
-                                    <i class="icon-docs"></i> New Post </a>
+                                    <i class="icon-docs"></i>Item 1</a>
                             </li>
                             <li>
                                 <a href="javascript:;">
-                                    <i class="icon-tag"></i> New Comment </a>
+                                    <i class="icon-tag"></i>Item 2</a>
                             </li>
                             <li>
                                 <a href="javascript:;">
-                                    <i class="icon-share"></i> Share </a>
+                                    <i class="icon-share"></i>Item 3</a>
                             </li>
                         </ul>
                     </div>
@@ -156,9 +182,9 @@
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user dropdown-dark">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <span class="username username-hide-on-mobile"> Nick </span>
+                                    <span class="username username-hide-on-mobile"> Albert M </span>
                                     <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                                    <img alt="" class="img-circle" src="../assets/layouts/layout4/img/avatar9.jpg" /> </a>
+                                    <img alt="" class="img-circle" /> </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
                                         <a href="page_user_profile_1.html">
@@ -213,58 +239,64 @@
                         <li class="heading">
                             <h3 class="uppercase">Features</h3>
                         </li>
-                        <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="icon-diamond"></i>
-                                <span class="title">System Features</span>
-                                <span class="arrow"></span>
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="icon-settings"></i>
-                                <span class="title">Settings</span>
-                                <span class="arrow"></span>
-                            </a>
-
-                        </li>
-                        <li class="nav-item  ">
-                            <a href="?p=" class="nav-link nav-toggle">
-                                <i class="icon-wallet"></i>
-                                <span class="title">My Finance</span>
-                                <span class="arrow"></span>
-                            </a>
-                            
+                        <li class="nav-item">
+                            <router-link to="/displayAssociation" class="title"> 
+                            <i class="icon-wallet"></i>
+                            Associations
+                                <!-- <span class="title">Add Association</span> -->
+                                <!-- <span class="arrow"></span> -->
+                                <!-- <router-link to="/admin/new">New Product</router-link> -->
+                            </router-link>
                         </li>
                         <li class="nav-item  ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-bar-chart"></i>
                                 <span class="title">Statistics</span>
-                                <span class="arrow"></span>
+                                <!-- <span class="arrow"></span> -->
                             </a>
-                           
                         </li>
                         <li class="nav-item  ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-user"></i>
                                 <span class="title">My Profile</span>
-                                <span class="arrow"></span>
+                                <!-- <span class="arrow"></span> -->
                             </a>
                         </li>
-                        
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-diamond"></i>
+                                <span class="title">System Features</span>
+                                <!-- <span class="arrow"></span> -->
+                            </a>
+                        </li>
                         <li class="nav-item  ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-settings"></i>
                                 <span class="title">System</span>
-                                <span class="arrow"></span>
+                                <!-- <span class="arrow"></span> -->
                             </a>
                             
                         </li>
-                        
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">Settings</span>
+                                <!-- <span class="arrow"></span> -->
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-logout"></i>
+                                <span class="title">Logout</span>
+                                <!-- <span class="arrow"></span> -->
+                            </a> 
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/testTable">Test This Route</router-link>
+                        </li>
                     </ul>
                     <!-- END SIDEBAR MENU -->
                 </div>
-                <!-- END SIDEBAR -->
             </div>
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
@@ -295,7 +327,7 @@
                         <li>
                             <a href="index.html">Home</a>
                             <i class="fa fa-circle"></i>
-                        </li>
+                        </li>  
                     </ul>
                     <!-- END PAGE BREADCRUMB -->
                     <!-- BEGIN PAGE BASE CONTENT -->
@@ -305,14 +337,15 @@
                                 <div class="portlet-title tabbable-line">
                                     <div class="caption">
                                         <i class="icon-bubbles font-dark hide"></i>
-                                        <span class="caption-subject font-dark bold uppercase">Content</span>
+                                        <span class="caption-subject font-dark bold uppercase">Content Header</span>
                                     </div>
                                 </div>
-                                <!-- <router-view></router-view>-->
+                                
                                 <div class="portlet-body">
                                     <div class="tab-content">
                                         <div class="portlet-body">
-                                        <table id="table-transform" data-toolbar="#transform-buttons" data-height="299">
+                                            <router-view></router-view>
+                                        <!-- <table id="table-transform" data-toolbar="#transform-buttons" data-height="299">
                                                 <thead>
                                                     <tr>
                                                         <th >Name</th>
@@ -341,12 +374,13 @@
                                                         <td>Burundi</td>
                                                     </tr>
                                                 </tbody>
-                                            </table>
+                                            </table>  -->
                                     </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <!-- END PAGE BASE CONTENT -->
                 </div>
